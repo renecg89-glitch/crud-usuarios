@@ -13,7 +13,9 @@
     </div>
 
     <div class="col">
-        <button class="btn btn-primary" @click="guardar">Guardar</button>
+        <button class="btn btn-primary btn-sm fw-bold" v-if="!editando" @click="guardar"><i class="bi bi-save"></i> Guardar</button>
+        <button class="btn btn-primary btn-sm me-3 fw-bold" v-if="editando" @click="actualizar"><i class="bi-arrow-repeat"></i> Actualizar</button>
+        <button class="btn btn-danger btn-sm fw-bold" v-if="editando" @click="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
     </div>
 </div>
 
@@ -36,8 +38,8 @@
 <td>{{ usuario.email }}</td>
 <td>
 
-<button class="btn btn-warning btn-sm">Editar</button>
-<button class="btn btn-danger btn-sm">Eliminar</button>
+<button class="btn btn-warning btn-sm fw-bold" @click="editar(usuario)"><i class="bi bi-pencil"></i> Editar</button>
+<button class="btn btn-danger btn-sm fw-bold ms-2" @click="eliminar(usuario.id)"><i class="bi bi-trash"></i> Eliminar</button>
 
 </td>
 </tr>
