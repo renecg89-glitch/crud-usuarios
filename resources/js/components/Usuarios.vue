@@ -1,20 +1,25 @@
 <template>
-<div>
+<div class="container mt-4">
 
 <h2>CRUD Usuarios</h2>
 
-<div>
-<input type="text" v-model="nombre" placeholder="Nombre">
-<input type="email" v-model="email" placeholder="Email">
+<div class="row mb-3">
+    <div class="col">
+        <input v-model="nombre" class="form-control" placeholder="Nombre">
+    </div>
 
-<button v-if="!editando" @click="guardar">Guardar</button>
-<button v-if="editando" @click="actualizar">Actualizar</button>
-<button v-if="editando" @click="cancelar">Cancelar</button>
+    <div class="col">
+        <input v-model="email" class="form-control" placeholder="Email">
+    </div>
+
+    <div class="col">
+        <button class="btn btn-primary" @click="guardar">Guardar</button>
+    </div>
 </div>
 
 <br>
 
-<table border="1">
+<table class="table table-bordered">
 <thead>
 <tr>
 <th>ID</th>
@@ -31,11 +36,8 @@
 <td>{{ usuario.email }}</td>
 <td>
 
-<button @click="editar(usuario)">Editar</button>
-
-<button @click="eliminar(usuario.id)">
-Eliminar
-</button>
+<button class="btn btn-warning btn-sm">Editar</button>
+<button class="btn btn-danger btn-sm">Eliminar</button>
 
 </td>
 </tr>
