@@ -19,8 +19,8 @@
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
         :pagination="true"
-        :paginationPageSize="5"
-        :paginationPageSizeSelector="[5,20,50,100]"
+        :paginationPageSize="10"
+        :paginationPageSizeSelector="[10,20,50,100]"
         :context="{ componentParent: this }"
         domLayout="autoHeight"
         @grid-ready="onGridReady"
@@ -102,11 +102,14 @@ export default {
         {
           headerName: '#',
           width: 90,
-          valueGetter: params =>
-            params.node.rowIndex +
-            1 +
-            params.api.paginationGetCurrentPage() *
-              params.api.paginationGetPageSize()
+        //   valueGetter: params => {
+        //     const rowIndex = params.node.rowIndex; // índice relativo a la página
+        //     const pageSize = params.api.paginationGetPageSize() || 5; // tamaño actual de página
+        //     const currentPage = params.api.paginationGetCurrentPage() || 0; // página actual
+        //     // calculamos número absoluto
+        //     return rowIndex + 1 + currentPage * pageSize;
+        // }
+            valueGetter: params => params.api.getDisplayedRowAtIndex(params.node.rowIndex).rowIndex + 1
         },
         { field: 'nombre', headerName: 'Nombre', flex: 1 },
         { field: 'email', headerName: 'Email', flex: 1 },
